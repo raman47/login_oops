@@ -5,7 +5,16 @@ if(Session::exists('home')){
 }
 //echo Session::get(Config::get('session/session_name'));
 $user = new User();  //current
-echo $user->
+if($user->isLoggedIn()){
+   ?>
+<p>Hello <a href="#"><?php echo escape($user->data()->username);?></a>!</p>
+<ul>
+    <li><a href="logout.php">Log Out</a></li>
+</ul>
+<?php    
+}else{
+    echo '<p> You need to <a href="login.php">log in</a> or <a href="register.php">register</a>';
+}
 //$user = DB::getInstance()->query("SELECT * FROM users ");
 
 //$user = DB::getInstance()->get('users',array('username', '=','alex'));
